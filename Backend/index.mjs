@@ -16,7 +16,12 @@ const allowedOrigins = [
   "http://localhost:5173",
 ];
 
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use(
+  cors({
+    origin: "https://login-register-front-ten.vercel.app",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
