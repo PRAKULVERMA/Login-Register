@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", // adjust based on your frontend port
+    origin: "https://login-register-front-ten.vercel.app/",
     credentials: true,
   })
 );
