@@ -11,24 +11,34 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// CORS config
+// ✅ Allow multiple frontend domains (optional)
+const allowedOrigins = [
+  "https://login-register-front-ten.vercel.app",
+  "http://localhost:5173", /
+];
+
 app.use(
   cors({
-    origin: "https://login-register-front-ten.vercel.app",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
 
 app.use(express.json());
 
-// Optional: Basic test route
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-app.use("/api/users", userRouter);
-app.use("/api", authRouter);
+
+app.use("/api/users", userRouter); // e.g., /api/users/register
+app.use("/api", authRouter); // e.g., /api/register
+
+// ✅ Catch-all route for 404s
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
