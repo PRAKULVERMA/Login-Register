@@ -1,6 +1,9 @@
-import jwt from "jsonwebtoken";
-
 export const authenticate = (req, res, next) => {
+  if (req.method === "OPTIONS") {
+    // Bypass auth for CORS preflight requests
+    return next();
+  }
+
   const authHeader = req.headers.authorization;
   if (!authHeader?.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Access token missing or invalid" });
