@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "../axiosConfig";
+import API from "../../axiosConfig.js";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ function Register() {
     setLoading(true);
 
     try {
-      const res = await API.post("/register", formData); // ✅ Use configured instance
+      const res = await API.post("/register", formData);
       alert(res.data.message || "Registered successfully");
       setFormData({ name: "", email: "", password: "", role: "Student" });
     } catch (err) {
