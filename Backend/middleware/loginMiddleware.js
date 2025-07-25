@@ -1,6 +1,7 @@
+import jwt from "jsonwebtoken";
+
 export const authenticate = (req, res, next) => {
   if (req.method === "OPTIONS") {
-    // Bypass auth for CORS preflight requests
     return next();
   }
 
@@ -12,7 +13,7 @@ export const authenticate = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach decoded token to request
+    req.user = decoded;
     next();
   } catch (error) {
     res.status(403).json({ message: "Invalid or expired token" });

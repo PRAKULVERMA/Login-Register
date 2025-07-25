@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "./axiosConfig"; // or paste full URL directly
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -18,12 +18,9 @@ function Register() {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/register`,
-        formData
-      );
-      alert(res.data.message);
-      setFormData({ name: "", email: "", password: "", role: "user" });
+      const res = await API.post("/register", formData); // ✅ Use configured instance
+      alert(res.data.message || "Registered successfully");
+      setFormData({ name: "", email: "", password: "", role: "Student" });
     } catch (err) {
       console.error("Error:", err);
       alert(err.response?.data?.message || "Registration failed");
@@ -31,6 +28,7 @@ function Register() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
