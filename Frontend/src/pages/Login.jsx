@@ -1,7 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom"; // <-- Add this import
 import API from "../../axiosConfig.js";
-import { Link } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -15,10 +14,7 @@ function Login() {
     setLoading(true);
     try {
       const { email, password } = formData;
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
-        email,
-        password,
-      });
+      const res = await API.post("/login", { email, password });
       localStorage.setItem("token", res.data.token);
       alert(res.data.message);
     } catch (err) {
@@ -31,7 +27,10 @@ function Login() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
       <div className="flex items-center gap-4">
-        <Link to="/Register" className="text-blue-600 font-medium hover:underline">
+        <Link
+          to="/Register"
+          className="text-blue-600 font-medium hover:underline"
+        >
           Register
         </Link>
       </div>
