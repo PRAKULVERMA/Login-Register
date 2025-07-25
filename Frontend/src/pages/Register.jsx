@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "./axiosConfig.js";
+import API from "../axiosConfig";
 
 function Register() {
   const [formData, setFormData] = useState({
