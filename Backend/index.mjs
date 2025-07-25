@@ -1,3 +1,4 @@
+// index.mjs
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
@@ -18,7 +19,13 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: "https://login-register-front-ten.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
@@ -36,4 +43,4 @@ app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-export const handler = serverless(app); 
+export const handler = serverless(app);

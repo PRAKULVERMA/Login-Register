@@ -1,6 +1,7 @@
+// src/pages/Login.jsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import API from "../../axiosConfig.js";
+import API from "../../axiosConfig";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -26,7 +27,7 @@ function Login() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 mb-4">
         <Link
           to="/Register"
           className="text-blue-600 font-medium hover:underline"
