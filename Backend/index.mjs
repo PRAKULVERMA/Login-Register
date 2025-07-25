@@ -1,11 +1,10 @@
-// index.mjs
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+import serverless from "serverless-http";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRouters.js";
 import authRouter from "./routes/loginregisterRouters.js";
-import cors from "cors";
-import serverless from "serverless-http";
 
 dotenv.config();
 connectDB();
@@ -19,13 +18,7 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true,
   })
 );

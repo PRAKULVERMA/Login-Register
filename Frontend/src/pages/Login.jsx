@@ -1,7 +1,6 @@
-// src/pages/Login.jsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import API from "../../axiosConfig";
+import API from "../../axiosConfig.js";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -27,20 +26,17 @@ function Login() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-      <div className="flex items-center gap-4 mb-4">
-        <Link
-          to="/Register"
-          className="text-blue-600 font-medium hover:underline"
-        >
-          Register
-        </Link>
-      </div>
+      <Link
+        to="/Register"
+        className="text-blue-600 font-medium hover:underline"
+      >
+        Register
+      </Link>
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-xl shadow-md w-96"
       >
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-
         <input
           type="email"
           name="email"
@@ -59,7 +55,6 @@ function Login() {
           value={formData.password}
           required
         />
-
         <button
           type="submit"
           className={`w-full text-white p-2 rounded-3xl ${
