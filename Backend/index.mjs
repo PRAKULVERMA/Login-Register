@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 // ✅ Allow multiple frontend domains (optional)
 const allowedOrigins = [
   "https://login-register-front-ten.vercel.app",
-  "http://localhost:5173", /
+  "http://localhost:5173", 
 ];
 
 app.use(
@@ -31,10 +31,9 @@ app.get("/", (req, res) => {
 });
 
 
-app.use("/api/users", userRouter); // e.g., /api/users/register
-app.use("/api", authRouter); // e.g., /api/register
+app.use("/api/users", userRouter);
+app.use("/api", authRouter); 
 
-// ✅ Catch-all route for 404s
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
