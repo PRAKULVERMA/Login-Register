@@ -18,7 +18,8 @@ function Register() {
     setLoading(true);
 
     try {
-      const res = await API.post("/register", formData);
+      const { name, email, password, role } = formData;
+      const res = await API.post("/register", { name, email, password, role });
       alert(res.data.message || "Registered successfully");
       setFormData({ name: "", email: "", password: "", role: "Student" });
     } catch (err) {
@@ -28,7 +29,6 @@ function Register() {
       setLoading(false);
     }
   };
-
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
