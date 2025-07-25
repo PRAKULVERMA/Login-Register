@@ -16,13 +16,7 @@ const allowedOrigins = [
   "http://localhost:5173",
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
-
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -36,5 +30,4 @@ app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-
-export const handler = serverless(app);
+export const handler = serverless(app); 
