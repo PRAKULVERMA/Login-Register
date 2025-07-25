@@ -10,7 +10,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(express.json());
 app.use(
   cors({
     origin: "https://login-register-front-ten.vercel.app",
@@ -18,6 +17,7 @@ app.use(
   })
 );
 
+app.use(express.json());
 
 app.use("/api/users", router);
 app.use("/api", route);
