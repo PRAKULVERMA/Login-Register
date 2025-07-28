@@ -1,19 +1,11 @@
 import express from "express";
-import {
-  getuserController,
-  createuserController,
-  updateuserController,
-  updateonlyoneController,
-  getuserControllerById
-} from "../controllers/userController.js";
+import User from "../model/User.js";
 
 const router = express.Router();
 
-router.get("/get", getuserController);
-router.get("/:id", getuserControllerById);
-router.post("/create", createuserController);
-router.put("/update/:id", updateuserController);
-router.put("/update/one/:id", updateonlyoneController);
-router.patch("/patch/:id", updateonlyoneController);
+router.get("/", async (req, res) => {
+  const users = await User.find().select("-password");
+  res.json(users);
+});
 
 export default router;
